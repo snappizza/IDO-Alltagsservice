@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDO Alltagsservice – Krefeld & Umgebung</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #1b5e20;
+            --primary-dark: #0f3813;
+            --primary-light: #e8f5e9;
+            --accent: #2e7d32;
+            --secondary: #0f172a;
+            --text-muted: #64748b;
+            --bg-light: #f8fafc;
+            --radius: 20px;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--secondary);
+            line-height: 1.6;
+        }
+
+        /* Sticky Glass Nav */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+
+        .logo-text span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 700;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--primary); }
+
+        /* Hero Banner */
+        .hero-banner {
+            position: relative;
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), 
+                        url('https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            background: rgba(46, 125, 50, 0.3);
+            border: 1px solid #66bb6a;
+            color: #a5d6a7;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-banner h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .hero-banner p {
+            font-size: 1.2rem;
+            color: #cbd5e1;
+            margin-bottom: 2rem;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn:hover { transform: translateY(-3px); }
+
+        .btn-primary { background-color: var(--primary); color: white; }
+        .btn-primary:hover { background-color: var(--primary-dark); }
+
+        .btn-whatsapp { background-color: #25d366; color: white; }
+        .btn-whatsapp:hover { background-color: #1eb954; }
+
+        /* Trust Badges Bar */
+        .trust-badges {
+            max-width: 1200px;
+            margin: -2.5rem auto 4rem;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .badge-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 1px solid #f1f5f9;
+        }
+
+        .badge-card i {
+            font-size: 1.8rem;
+            color: var(--primary);
+            background: var(--primary-light);
+            padding: 14px;
+            border-radius: 16px;
+        }
+
+        /* Section Headlines */
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 4rem auto 2.5rem;
+            padding: 0 1rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--secondary);
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Services Grid with Photos */
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .image-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid #f1f5f9;
+            transition: transform 0.3s;
+        }
+
+        .image-card:hover { transform: translateY(-8px); }
+
+        .card-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .card-body { padding: 1.8rem; }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .card-title i { color: var(--primary); }
+
+        .card-list {
+            list-style: none;
+            color: var(--text-muted);
+        }
+
+        .card-list li {
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-list li i {
+            color: var(--primary);
+            font-size: 0.8rem5;
+        }
+
+        /* Original Flyer Showcase Section */
+        .flyer-section {
+            background: white;
+            padding: 4rem 2rem;
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .flyer-grid {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .flyer-card {
+            background: var(--bg-light);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid #e2e8f0;
+        }
+
+        .flyer-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+
+        .flyer-img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .flyer-img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Contact Section with WhatsApp QR Code */
+        .contact-box {
+            max-width: 1100px;
+            margin: 5rem auto;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            border-radius: 28px;
+            padding: 3.5rem 2rem;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .contact-info h2 { font-size: 2.2rem; margin-bottom: 1rem; }
+        .contact-info p { color: #e2e8f0; margin-bottom: 2rem; font-size: 1.1rem; }
+
+        .contact-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255,255,255,0.1);
+            padding: 12px 20px;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .qr-card {
+            background: white;
+            color: var(--secondary);
+            padding: 1.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .qr-card img {
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
+            margin-bottom: 0.8rem;
+        }
+
+        .qr-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2.5rem;
+            color: var(--text-muted);
+            border-top: 1px solid #e2e8f0;
+            background: white;
+        }
+
+        @media (max-width: 900px) {
+            .contact-box { grid-template-columns: 1fr; text-align: center; }
+            .qr-card { max-width: 280px; margin: 0 auto; }
+            .contact-item { justify-content: center; }
+            .hero-banner h1 { font-size: 2.2rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nav mit deinem Logo -->
+    <nav>
+        <a href="#" class="logo-container">
+            <img src="logo.jpg" alt="IDO Alltagsservice Logo" class="logo-img" onerror="this.style.display='none'">
+            <div class="logo-text">
+                IDO Alltagsservice
+                <span>Gemeinsam statt einsam</span>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#leistungen">Leistungen</a></li>
+            <li><a href="#flyer">Unsere Flyer</a></li>
+            <li><a href="#vorteile">Ihre Vorteile</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Banner mit Fotohintergrund -->
+    <section class="hero-banner">
+        <div class="hero-content">
+            <span class="hero-badge"><i class="fa-solid fa-heart"></i> Anerkannt nach § 45b SGB XI & AnFöVO NRW</span>
+            <h1>Gemeinsam statt einsam im Alltag</h1>
+            <p>Persönliche & individuelle Unterstützung für Senioren, Hilfsbedürftige und Angehörige – sowie professionelle Gebäudereinigung & Gartenpflege in Krefeld und Umgebung.</p>
+            <div class="btn-group">
+                <a href="https://wa.me/491639686638" target="_blank" class="btn btn-whatsapp">
+                    <i class="fa-brands fa-whatsapp" style="font-size: 1.3rem;"></i> WhatsApp Beratung
+                </a>
+                <a href="tel:01639686638" class="btn btn-primary">
+                    <i class="fa-solid fa-phone"></i> 0163 968 66 38
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges Bar -->
+    <div class="trust-badges">
+        <div class="badge-card">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+            <div>
+                <strong>Abrechnung Pflegekasse</strong>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">Entlastungsbetrag nutzbar</p>
+            </div>
+        </div>
+        <div class="badge-card">
+            <i class="fa-solid fa-award"></i>
+            <div>
+                <strong>Anerkannter Anbieter</strong>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">Zertifiziert in NRW</p>
+            </div>
+        </div>
+        <div class="badge-card">
+            <i class="fa-solid fa-user-shield"></i>
+            <div>
+                <strong>Diskret & Zuverlässig</strong>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">Sorgfältige Ausführung</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leistungs-Grid mit Fotos -->
+    <div class="section-header" id="leistungen">
+        <h2>Unsere Leistungen im Überblick</h2>
+        <p>Individuell auf Ihre Wünsche und Bedürfnisse abgestimmt.</p>
+    </div>
+
+    <div class="services-grid">
+        <!-- Alltagsbegleitung -->
+        <div class="image-card">
+            <img src="https://images.unsplash.com/photo-1581579438747-1dc8d1e05fec?auto=format&fit=crop&w=600&q=80" alt="Alltagsbegleitung" class="card-img">
+            <div class="card-body">
+                <div class="card-title">
+                    <i class="fa-solid fa-hand-holding-heart"></i> Alltagsbegleitung
+                </div>
+                <ul class="card-list">
+                    <li><i class="fa-solid fa-check"></i> Begleitung zu Arztterminen</li>
+                    <li><i class="fa-solid fa-check"></i> Spaziergänge & Freizeit</li>
+                    <li><i class="fa-solid fa-check"></i> Gemeinsame Gespräche</li>
+                    <li><i class="fa-solid fa-check"></i> Hilfe bei Einkäufen</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Haushaltshilfe -->
+        <div class="image-card">
+            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=600&q=80" alt="Haushaltshilfe" class="card-img">
+            <div class="card-body">
+                <div class="card-title">
+                    <i class="fa-solid fa-broom"></i> Haushaltshilfe
+                </div>
+                <ul class="card-list">
+                    <li><i class="fa-solid fa-check"></i> Haushaltsführung</li>
+                    <li><i class="fa-solid fa-check"></i> Wäsche waschen & bügeln</li>
+                    <li><i class="fa-solid fa-check"></i> Staubsaugen & Bodenpflege</li>
+                    <li><i class="fa-solid fa-check"></i> Aufräumen & Ordnung halten</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Gebäudereinigung -->
+        <div class="image-card">
+            <img src="https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?auto=format&fit=crop&w=600&q=80" alt="Gebäudereinigung" class="card-img">
+            <div class="card-body">
+                <div class="card-title">
+                    <i class="fa-solid fa-building-circle-check"></i> Gebäudereinigung
+                </div>
+                <ul class="card-list">
+                    <li><i class="fa-solid fa-check"></i> Unterhalts- & Büroreinigung</li>
+                    <li><i class="fa-solid fa-check"></i> Treppenhausreinigung</li>
+                    <li><i class="fa-solid fa-check"></i> Glas- & Fensterreinigung</li>
+                    <li><i class="fa-solid fa-check"></i> Wohnanlagen & Gewerbe</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Gartenpflege -->
+        <div class="image-card">
+            <img src="https://images.unsplash.com/photo-1558904541-efa843a96f01?auto=format&fit=crop&w=600&q=80" alt="Gartenpflege" class="card-img">
+            <div class="card-body">
+                <div class="card-title">
+                    <i class="fa-solid fa-seedling"></i> Gartenpflege
+                </div>
+                <ul class="card-list">
+                    <li><i class="fa-solid fa-check"></i> Rasenpflege & Mähen</li>
+                    <li><i class="fa-solid fa-check"></i> Hecken- & Strauchschnitt</li>
+                    <li><i class="fa-solid fa-check"></i> Pflege von Grünanlagen</li>
+                    <li><i class="fa-solid fa-check"></i> Laubentfernung</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Original Flyer Showcase Section -->
+    <section class="flyer-section" id="flyer">
+        <div class="section-header" style="margin-top: 0;">
+            <h2>Unsere Inforatgeber & Flyer</h2>
+            <p>Hier finden Sie unsere offiziellen Flyer als Übersicht zum Nachlesen.</p>
+        </div>
+        <div class="flyer-grid">
+            <div class="flyer-card">
+                <h3>Alltagsbegleitung & Haushaltshilfe</h3>
+                <img src="flyer-alltag.jpg" alt="Flyer Alltagsbegleitung" class="flyer-img" onerror="this.src='https://via.placeholder.com/400x550?text=Flyer+Alltagsservice'">
+            </div>
+            <div class="flyer-card">
+                <h3>Gebäudereinigung & Gartenpflege</h3>
+                <img src="flyer-reinigung.jpg" alt="Flyer Gebäudereinigung" class="flyer-img" onerror="this.src='https://via.placeholder.com/400x550?text=Flyer+Gebaeudereinigung'">
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Contact Box mit QR Code -->
+    <div class="contact-box" id="kontakt">
+        <div class="contact-info">
+            <h2>Jetzt kostenlos beraten lassen!</h2>
+            <p>Wir nehmen uns gerne Zeit für Sie und beraten Sie persönlich.</p>
+            
+            <div class="contact-list">
+                <div class="contact-item"><i class="fa-solid fa-phone"></i> 0163 968 66 38</div>
+                <div class="contact-item"><i class="fa-solid fa-envelope"></i> info@ido-alltagsservice.de</div>
+                <div class="contact-item"><i class="fa-solid fa-location-dot"></i> Krefeld & Umgebung</div>
+            </div>
+
+            <a href="https://wa.me/491639686638" target="_blank" class="btn btn-whatsapp" style="font-size: 1.1rem;">
+                <i class="fa-brands fa-whatsapp" style="font-size: 1.4rem;"></i> WhatsApp Chat Starten
+            </a>
+        </div>
+
+        <div class="qr-card">
+            <img src="qr-code.jpg" alt="WhatsApp QR-Code" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://wa.me/491639686638'">
+            <strong>WhatsApp-Beratung</strong>
+            <p>QR-Code mit dem Smartphone scannen & direkt schreiben!</p>
+        </div>
+    </div>
+
+    <!-- Footer mit Impressum -->
+    <footer>
+        <p><strong>Impressum</strong></p>
+        <p>IDO Alltagsservice | Inhaber: Barzan Khalaf Ido</p>
+        <p>Philipp-Reis-Str. 7, 47807 Krefeld</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">E-Mail: info@ido-alltagsservice.de | Tel: 0163 968 66 38</p>
+    </footer>
+
+</body>
+</html>
